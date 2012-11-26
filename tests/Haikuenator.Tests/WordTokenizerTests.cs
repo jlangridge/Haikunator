@@ -12,7 +12,7 @@ namespace Haikuenator.Tests
         public void TokenizerShouldTokenizeWordsBySpaces()
         {
             var tokenizer = new WordTokenizer("This is a test");
-            var results = tokenizer.ParseTokens().ToArray();
+            var results = tokenizer.GetTokens().ToArray();
             Assert.AreEqual(new[]{"This", "is", "a", "test"}, results);
         }
 
@@ -20,7 +20,7 @@ namespace Haikuenator.Tests
         public void TokenizerShouldNotIncludeCommonPunctuation()
         {
             var tokenizer = new WordTokenizer("This; is a, test.");
-            var results = tokenizer.ParseTokens().ToArray();
+            var results = tokenizer.GetTokens().ToArray();
             Assert.AreEqual(new[] { "This", "is", "a", "test" }, results);
         }
 

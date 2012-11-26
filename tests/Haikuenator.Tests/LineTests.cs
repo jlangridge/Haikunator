@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -21,6 +22,16 @@ namespace Haikuenator.Tests
         {
             var line = new Line(5);
             Assert.False(line.CanRead("out of itself"));
+        }
+
+        [Test]
+        public void ReadFromShouldConsumeTheCorrectNumberOfSyllablesFromTheInput()
+        {
+            var input = new StringReader("out of the water out of itself");
+            var line = new Line(5);
+            line.ReadFrom(input);
+            Assert.AreEqual("out of the water", line.ToString());
+            Assert.AreEqual("out of itself", input.ReadToEnd());
         }
     }
 }

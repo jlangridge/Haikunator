@@ -53,7 +53,7 @@ namespace Haikuenator
         /// Parse tokens from the <see cref="Source"/> string
         /// </summary>
         /// <returns>Each parsed token</returns>
-        public IEnumerable<string> ParseTokens()
+        public IEnumerable<string> GetTokens()
         {
             string token;
             while((token = NextToken())!= null)
