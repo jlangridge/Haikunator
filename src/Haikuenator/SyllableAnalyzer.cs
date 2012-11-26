@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Haikuenator
 {
@@ -17,16 +15,19 @@ namespace Haikuenator
             Word = word.ToLower();
         }
 
+        /// <summary>
+        /// Returns vowel groups - groups of letters containing a single
+        /// vowel, from the source word
+        /// </summary>
+        /// <returns>The vowel groups parsed from the source word</returns>
         public IEnumerable<string> ParseVowelGroups()
         {
-            var vowels = new[] {'a', 'e', 'i', 'o', 'u', 'y'};
-
             var isFirst = true;
             var vowelGroup = string.Empty;
 
             foreach (var letter in Word)
             {
-                if (vowels.Contains(letter))
+                if (letter.IsVowel())
                 {
                     if (!isFirst)
                     {
@@ -44,15 +45,46 @@ namespace Haikuenator
             }
         }
 
+        /// <summary>
+        /// Get the count of syllables for the source word
+        /// </summary>
+        /// <returns>The number of syllables the analyzer determines are present in the word</returns>
         public int GetCount()
         {
             var groups = ParseVowelGroups().ToList();
+
+            var previousGroup = string.Empty;
+            var count = 0;
+
+            foreach (var currentGroup in groups)
+            {
+                if (!IsDiphthong(previousGroup + currentGroup[0]))
+                {
+                    count++;
+                }
+                previousGroup = currentGroup;
+            }
+
             var lastGroup = groups.LastOrDefault();
             if(lastGroup != null && lastGroup.Equals("e"))
             {
-                return groups.Count() -1;
+                return count -1;
             }
-            return ParseVowelGroups().Count();
+            return count;
+        }
+
+        /// <summary>
+        /// Not-very-accurate way of discerning diphthongs "ou", "oi" etc
+        /// </summary>
+        /// <param name="syllable">String containing the syllable to analyze</param>
+        /// <returns>true if the syllable is a diphthong, otherwise false</returns>
+        public static bool IsDiphthong(string syllable)
+        {
+            if(syllable.Length != 2)
+            {
+                return false;
+            }
+            return syllable[0].IsVowel() && syllable[1].IsVowel();
         }
     }
 }

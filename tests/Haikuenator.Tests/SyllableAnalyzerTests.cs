@@ -39,5 +39,18 @@ namespace Haikuenator.Tests
             Assert.AreEqual(1, GetSyllableCount("time"));
         }
 
+        [Test]
+        public void AnalyzerShouldCountDiphthongsAsASingleSyllable()
+        {
+            Assert.AreEqual(2, GetSyllableCount("output"));
+            Assert.AreEqual(4, GetSyllableCount("undoubtedly"));
+        }
+
+        [Test]
+        public void IsDiphthongShouldDetectDiphthongsCorrectly()
+        {
+            Assert.True(SyllableAnalyzer.IsDiphthong("oi"), "oi should be seen as a diphthong");
+            Assert.False(SyllableAnalyzer.IsDiphthong("op"), "op should not be seen as a diphthong");
+        }
     }
 }
