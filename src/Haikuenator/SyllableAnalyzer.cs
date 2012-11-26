@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Haikuenator
 {
+    /// <summary>
+    /// Provides very basic phonological analysis of a given word
+    /// </summary>
     public class SyllableAnalyzer
     {
         private readonly string Word;
@@ -19,32 +22,36 @@ namespace Haikuenator
             var vowels = new[] {'a', 'e', 'i', 'o', 'u', 'y'};
 
             var isFirst = true;
-            var group = string.Empty;
+            var vowelGroup = string.Empty;
 
             foreach (var letter in Word)
             {
-                if (!vowels.Contains(letter))
+                if (vowels.Contains(letter))
                 {
-                    group += letter;
-                    continue;
+                    if (!isFirst)
+                    {
+                        yield return vowelGroup;
+                        vowelGroup = string.Empty;
+                    }
+                    isFirst = false;
                 }
-                if(!isFirst)
-                {
-                    yield return @group;
-                    @group = string.Empty;
-                }
-                group += letter;
-                isFirst = false;
+                vowelGroup += letter;
             }
 
-            if(!string.IsNullOrEmpty(group))
+            if(!string.IsNullOrEmpty(vowelGroup))
             {
-                yield return group;
+                yield return vowelGroup;
             }
         }
 
         public int GetCount()
         {
+            var groups = ParseVowelGroups().ToList();
+            var lastGroup = groups.LastOrDefault();
+            if(lastGroup != null && lastGroup.Equals("e"))
+            {
+                return groups.Count() -1;
+            }
             return ParseVowelGroups().Count();
         }
     }
