@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Haikuenator
 {
@@ -15,9 +16,15 @@ namespace Haikuenator
             Source = source;
         }
 
+        public string ToSanitizedString()
+        {
+            return Regex.Replace(Source, @"[^\w ]", string.Empty);
+        }
+
         public IEnumerable<string> ParseTokens()
         {
-            return Source.Split(' ');
+            
+            return ToSanitizedString().Split(' ');
         }
     }
 }
