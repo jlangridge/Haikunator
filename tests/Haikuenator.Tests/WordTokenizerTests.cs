@@ -29,7 +29,21 @@ namespace Haikuenator.Tests
         public void ToSanitizedStringShouldRemovePunctuation()
         {
             var tokenizer = new WordTokenizer("This; is a, test.");
-            Assert.AreEqual("This is a test", tokenizer.ToSanitizedString());
+            Assert.AreEqual("This is a test", tokenizer.GetSanitizedString());
+        }
+
+        [Test]
+        public void ToSanitizedStringShouldRemoveDigits()
+        {
+            var tokenizer = new WordTokenizer("This2 is a, test.");
+            Assert.AreEqual("This is a test", tokenizer.GetSanitizedString());
+        }
+
+        [Test]
+        public void ToSanitizedStringShouldRemoveDuplicateSpaces()
+        {
+            var tokenizer = new WordTokenizer("This   is a   test.");
+            Assert.AreEqual("This is a test", tokenizer.GetSanitizedString());
         }
     }
 }

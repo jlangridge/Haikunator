@@ -16,15 +16,15 @@ namespace Haikuenator
             Source = source;
         }
 
-        public string ToSanitizedString()
+        public string GetSanitizedString()
         {
-            return Regex.Replace(Source, @"[^\w ]", string.Empty);
+            var punctuationRemoved = Regex.Replace(Source, @"[^A-Za-z ]", string.Empty);
+            return Regex.Replace(punctuationRemoved, @"\s+", " ");
         }
 
         public IEnumerable<string> ParseTokens()
         {
-            
-            return ToSanitizedString().Split(' ');
+            return GetSanitizedString().Split(' ');
         }
     }
 }
