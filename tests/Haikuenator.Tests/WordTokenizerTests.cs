@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Haikuenator.Tests
@@ -38,6 +40,31 @@ namespace Haikuenator.Tests
         public void ToSanitizedStringShouldRemoveDuplicateSpaces()
         {
             Assert.AreEqual("This is a test", WordTokenizer.Sanitize("This   is a   test."));
+        }
+
+        [Test]
+        public void NextTokenShouldReadThroughATextReaderOneWordAtATime()
+        {
+            var reader = new StringReader("This is a test");
+            var tokenizer = new WordTokenizer(reader);
+            var word = tokenizer.NextToken();
+            Assert.AreEqual("This", word);
+            Assert.True(reader.Peek() == 'i');
+        }
+
+        [Test]
+        public void NextTokenShouldReturnNullWhenThereAreNoMoreTokens()
+        {
+            var tokenizer = new WordTokenizer("This");
+            tokenizer.NextToken();
+            Assert.IsNull(tokenizer.NextToken());
+        }
+
+        [Test]
+        public void SanitizeShouldThrowArgumentNullExceptionWhenNullIsPassedIn()
+        {
+            var ex = Assert.Throws<ArgumentNullException>(() => WordTokenizer.Sanitize(null));
+            Assert.AreEqual("source", ex.ParamName);
         }
     }
 }

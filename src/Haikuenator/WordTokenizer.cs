@@ -40,6 +40,10 @@ namespace Haikuenator
         /// <returns>The sanitized string</returns>
         public static string Sanitize(string source)
         {
+            if(source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
             var punctuationRemoved = Regex.Replace(source, @"[^A-Za-z ]", string.Empty);
             return Regex.Replace(punctuationRemoved, @"\s+", " ");
         }
@@ -51,7 +55,31 @@ namespace Haikuenator
         /// <returns>Each parsed token</returns>
         public IEnumerable<string> ParseTokens()
         {
-            return Sanitize(Source.ReadToEnd()).Split(' ');
+            string token;
+            while((token = NextToken())!= null)
+            {
+                yield return token;
+            }
+        }
+
+        /// <summary>
+        /// Consume the next token from the input stream
+        /// </summary>
+        /// <returns>The sanitized token</returns>
+        public string NextToken()
+        {
+            int c;
+            string token = null;
+            while((c=Source.Read()) != -1)
+            {
+                if((char)c==' ' && !string.IsNullOrEmpty(token))
+                {
+                    break;
+                }
+                token += (char)c;
+            }
+
+            return token == null ? null : Sanitize(token);
         }
     }
 }
