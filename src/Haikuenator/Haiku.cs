@@ -49,6 +49,7 @@ namespace Haikuenator
             {
                 line.ReadFrom(reader);
             }
+            
         }
     }
 }

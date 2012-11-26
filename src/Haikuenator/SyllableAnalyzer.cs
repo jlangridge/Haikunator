@@ -69,7 +69,7 @@ namespace Haikuenator
                 previousGroup = currentGroup;
             }
 
-            if(string.Equals(groups.LastOrDefault(), "e"))
+            if(string.Equals(groups.LastOrDefault(), "e") && !Word.EndsWith("ee"))
             {
                 return count - 1;
             }
@@ -84,6 +84,10 @@ namespace Haikuenator
         public static bool IsDiphthong(string syllable)
         {
             if(syllable.Length != 2)
+            {
+                return false;
+            }
+            if (syllable == "ia" || syllable == "io")
             {
                 return false;
             }

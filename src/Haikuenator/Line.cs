@@ -46,12 +46,13 @@ namespace Haikuenator
 
             var separator = string.Empty;
 
+            var errorString = string.Format("The supplied text does not fit {0} syllables", Syllables);
+
             foreach (var token in tokens)
             {
                 var syllableCount = new SyllableAnalyzer(token).GetCount();
                 if (syllableTotal + syllableCount > Syllables)
                 {
-                    var errorString = string.Format("The supplied text does not fit {0} syllables", Syllables);
                     throw new ArgumentException(errorString, "input");
                 }
                 syllableTotal += syllableCount;
@@ -61,9 +62,12 @@ namespace Haikuenator
 
                 if (syllableTotal == Syllables)
                 {
-                    break;
+                    return;
                 }
             }
+
+            throw new ArgumentException(errorString, "input");
+
         }
 
         public override string ToString()

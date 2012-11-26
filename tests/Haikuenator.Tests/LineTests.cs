@@ -33,5 +33,12 @@ namespace Haikuenator.Tests
             Assert.AreEqual("out of the water", line.ToString());
             Assert.AreEqual("out of itself", input.ReadToEnd());
         }
+
+        [Test]
+        public void LinesThatAreTooShortShouldThrowAnArgumentException()
+        {
+            var ex = Assert.Throws<ArgumentException>(() => new Line(5).ReadFrom(new StringReader("Not long enough")));
+            Assert.AreEqual("input", ex.ParamName);
+        }
     }
 }
