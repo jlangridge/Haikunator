@@ -10,6 +10,10 @@ namespace Haikuenator
     {
         private readonly string Word;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SyllableAnalyzer"/> class
+        /// </summary>
+        /// <param name="word">The word to analyze</param>
         public SyllableAnalyzer(string word)
         {
             Word = word.ToLower();
@@ -22,19 +26,19 @@ namespace Haikuenator
         /// <returns>The vowel groups parsed from the source word</returns>
         public IEnumerable<string> ParseVowelGroups()
         {
-            var isFirst = true;
+            var firstVowel = true;
             var vowelGroup = string.Empty;
 
             foreach (var letter in Word)
             {
                 if (letter.IsVowel())
                 {
-                    if (!isFirst)
+                    if (!firstVowel)
                     {
                         yield return vowelGroup;
                         vowelGroup = string.Empty;
                     }
-                    isFirst = false;
+                    firstVowel = false;
                 }
                 vowelGroup += letter;
             }
@@ -65,10 +69,9 @@ namespace Haikuenator
                 previousGroup = currentGroup;
             }
 
-            var lastGroup = groups.LastOrDefault();
-            if(lastGroup != null && lastGroup.Equals("e"))
+            if(string.Equals(groups.LastOrDefault(), "e"))
             {
-                return count -1;
+                return count - 1;
             }
             return count;
         }
