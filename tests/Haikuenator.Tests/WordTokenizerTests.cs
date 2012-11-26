@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using NUnit.Framework;
 
 namespace Haikuenator.Tests
@@ -28,22 +25,19 @@ namespace Haikuenator.Tests
         [Test]
         public void ToSanitizedStringShouldRemovePunctuation()
         {
-            var tokenizer = new WordTokenizer("This; is a, test.");
-            Assert.AreEqual("This is a test", tokenizer.GetSanitizedString());
+            Assert.AreEqual("This is a test", WordTokenizer.Sanitize("This; is a, test."));
         }
 
         [Test]
         public void ToSanitizedStringShouldRemoveDigits()
         {
-            var tokenizer = new WordTokenizer("This2 is a, test.");
-            Assert.AreEqual("This is a test", tokenizer.GetSanitizedString());
+            Assert.AreEqual("This is a test", WordTokenizer.Sanitize("This2 is a, test."));
         }
 
         [Test]
         public void ToSanitizedStringShouldRemoveDuplicateSpaces()
         {
-            var tokenizer = new WordTokenizer("This   is a   test.");
-            Assert.AreEqual("This is a test", tokenizer.GetSanitizedString());
+            Assert.AreEqual("This is a test", WordTokenizer.Sanitize("This   is a   test."));
         }
     }
 }

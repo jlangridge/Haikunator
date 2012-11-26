@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Haikuenator
@@ -10,26 +11,36 @@ namespace Haikuenator
     /// </summary>
     public class WordTokenizer
     {
-        private readonly string Source;
+        private readonly TextReader Source;
 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WordTokenizer"/> class
         /// </summary>
         /// <param name="source">The source of words to tokenize</param>
-        public WordTokenizer(string source)
+        public WordTokenizer(TextReader source)
         {
             Source = source;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WordTokenizer"/> class
+        /// </summary>
+        /// <param name="source">The source of words to tokenize</param>
+        public WordTokenizer(string source) : this(new StringReader(source))
+        {
+            
         }
 
         /// <summary>
         /// Sanitizes a string for use with the <see cref="SyllableAnalyzer"/>. This means removing
         /// punctuation and digits etc.
         /// </summary>
+        /// <param name="source">The source string to sanitize</param>
         /// <returns>The sanitized string</returns>
-        public string GetSanitizedString()
+        public static string Sanitize(string source)
         {
-            var punctuationRemoved = Regex.Replace(Source, @"[^A-Za-z ]", string.Empty);
+            var punctuationRemoved = Regex.Replace(source, @"[^A-Za-z ]", string.Empty);
             return Regex.Replace(punctuationRemoved, @"\s+", " ");
         }
 
@@ -40,7 +51,7 @@ namespace Haikuenator
         /// <returns>Each parsed token</returns>
         public IEnumerable<string> ParseTokens()
         {
-            return GetSanitizedString().Split(' ');
+            return Sanitize(Source.ReadToEnd()).Split(' ');
         }
     }
 }

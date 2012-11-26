@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 
 namespace Haikuenator
@@ -22,14 +23,24 @@ namespace Haikuenator
         /// Boolean to show whether the input string matches the specified number
         /// of syllables for this line
         /// </summary>
-        /// <param name="candidateString">The <see cref="string"/> to analyze</param>
+        /// <param name="candidateText">The <see cref="string"/> to analyze</param>
         /// <returns>True if the candidate string matches the syllable count, otherwise false</returns>
-        public bool CanRead(string candidateString)
+        public bool CanRead(string candidateText)
         {
-            var tokens = new WordTokenizer(candidateString).ParseTokens();
+            var tokens = new WordTokenizer(candidateText).ParseTokens();
             
             var syllableCount = tokens.Sum(token => new SyllableAnalyzer(token).GetCount());
             return syllableCount == Syllables;
         }
+
+        /// <summary>
+        /// Reads the number of syllables for the line from the supplied <see cref="TextReader"/>
+        /// </summary>
+        /// <param name="input">The <see cref="TextReader"/> object to use</param>
+        public void ReadFrom(TextReader input)
+        {
+            
+        }
+
     }
 }
