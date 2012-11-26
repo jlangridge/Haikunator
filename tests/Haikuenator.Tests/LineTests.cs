@@ -40,5 +40,11 @@ namespace Haikuenator.Tests
             var ex = Assert.Throws<ArgumentException>(() => new Line(5).ReadFrom(new StringReader("Not long enough")));
             Assert.AreEqual("input", ex.ParamName);
         }
+
+        [Test]
+        public void CanReadShouldReturnFalseIfSyllableCountDoesNotMatch()
+        {
+            Assert.False(new Line(7).CanRead("train fault resulting"));
+        }
     }
 }

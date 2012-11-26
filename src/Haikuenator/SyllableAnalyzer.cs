@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Haikuenator
@@ -62,7 +63,8 @@ namespace Haikuenator
 
             foreach (var currentGroup in groups)
             {
-                if (!IsDiphthong(previousGroup + currentGroup[0]))
+                if (!IsDiphthong(previousGroup.LastOrDefault().ToString(CultureInfo.InvariantCulture) 
+                    + currentGroup[0]))
                 {
                     count++;
                 }

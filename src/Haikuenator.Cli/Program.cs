@@ -17,7 +17,12 @@ namespace Haikuenator.Cli
                 Environment.Exit(1);
             }
 
-            var statuses = LoadStatuses(args[0]);
+            var username = args[0];
+
+            Console.WriteLine("Haikuenifying {0}...", username);
+            Console.WriteLine("------------------------------------------");
+
+            var statuses = LoadStatuses(username);
             foreach (var status in statuses)
             {
                 var hk = new Haiku();
@@ -33,20 +38,19 @@ namespace Haikuenator.Cli
                 }
 
             }
-            Console.Read();
         }
 
         private static void ShowUsage()
         {
             Console.WriteLine("Haikuenates twitter feeds (kind of)");
             Console.WriteLine("Usage: Haikuenate [screen name]");
-            Console.WriteLine("That is all..");
+            Console.WriteLine("That is all.");
         }
 
         public static IEnumerable<string> LoadStatuses(string username)
         {
             var urlString = string.Format(
-                "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name={0}", username);
+                "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name={0}&count=100", username);
             var client = new WebClient();
 
             var xmlStatuses = client.DownloadString(new Uri(urlString));

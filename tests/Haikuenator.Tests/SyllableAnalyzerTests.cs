@@ -56,14 +56,21 @@ namespace Haikuenator.Tests
         [Test]
         public void IsDiphthongShouldHandleSpecialCases()
         {
-            Assert.False(SyllableAnalyzer.IsDiphthong("ia"), "ia should not be seen as a dipthong");
-            Assert.False(SyllableAnalyzer.IsDiphthong("io"), "io should not be seen as a dipthong");
+            Assert.False(SyllableAnalyzer.IsDiphthong("ia"), "ia should not be seen as a diphthong");
+            Assert.False(SyllableAnalyzer.IsDiphthong("io"), "io should not be seen as a diphthong");
         }
 
         [Test]
-        public void DoubleEsAtTheEndOfAWordShouldBeAnExtraSyllable()
+        public void DoubleEsAtTheEndOfAWordShouldNotBeMarkedAsSilent()
         {
             Assert.AreEqual(3, GetSyllableCount("Yessiree"));
         }
+
+        [Test]
+        public void TrainShouldBeASingleSyllable()
+        { 
+            Assert.AreEqual(1, GetSyllableCount("train"));
+        }
+
     }
 }
