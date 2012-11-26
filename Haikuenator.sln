@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haikuenator", "src\Haikuena
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haikuenator.Tests", "tests\Haikuenator.Tests\Haikuenator.Tests.csproj", "{49B7EEF5-B937-41C5-ACCA-EDF10CC67CE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haikuenator.Cli", "Haikuenator.Cli\Haikuenator.Cli.csproj", "{301C40FF-5626-4836-84E7-7E29E448997F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haikuenator.Cli", "src\Haikuenator.Cli\Haikuenator.Cli.csproj", "{301C40FF-5626-4836-84E7-7E29E448997F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

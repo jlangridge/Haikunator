@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Haikuenator\Haikuenator.csproj">
+    <ProjectReference Include="..\Haikuenator\Haikuenator.csproj">
       <Project>{E6FD4D25-545F-45DF-ACED-54612B74ADAA}</Project>
       <Name>Haikuenator</Name>
     </ProjectReference>
