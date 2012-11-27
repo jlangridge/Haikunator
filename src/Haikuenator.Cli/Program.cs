@@ -11,7 +11,7 @@ namespace Haikuenator.Cli
     {
         public static void Main(string[] args)
         {
-            if(args.Length != 1)
+            if(args.Length < 1 || args.Length> 2)
             {
                 ShowUsage();
                 Environment.Exit(1);
@@ -19,13 +19,25 @@ namespace Haikuenator.Cli
 
             var username = args[0];
 
+            LinePattern pattern;
+
+            if(args.Length > 1)
+            {
+               pattern = LinePattern.Parse(args[1]);
+            }
+            else
+            {
+                pattern = LinePattern.Default;
+            }
+            
+
             Console.WriteLine("Haikuenifying {0}...", username);
             Console.WriteLine("------------------------------------------");
 
             var statuses = LoadStatuses(username);
             foreach (var status in statuses)
             {
-                var hk = new Haiku();
+                var hk = pattern.CreateHaiku();
                 try
                 {
                     hk.ReadFrom(new StringReader(status));    
@@ -43,7 +55,7 @@ namespace Haikuenator.Cli
         private static void ShowUsage()
         {
             Console.WriteLine("Haikuenates twitter feeds (kind of)");
-            Console.WriteLine("Usage: Haikuenate [screen name]");
+            Console.WriteLine("Usage: Haikuenate [screen name] [pattern]");
             Console.WriteLine("That is all.");
         }
 

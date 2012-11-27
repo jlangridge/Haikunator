@@ -17,14 +17,6 @@ namespace Haikuenator.Tests
         }
 
         [Test]
-        public void TokenizerShouldNotIncludeCommonPunctuation()
-        {
-            var tokenizer = new WordTokenizer("This; is a, test.");
-            var results = tokenizer.GetTokens().ToArray();
-            Assert.AreEqual(new[] { "This", "is", "a", "test" }, results);
-        }
-
-        [Test]
         public void ToSanitizedStringShouldRemovePunctuation()
         {
             Assert.AreEqual("This is a test", WordTokenizer.Sanitize("This; is a, test."));

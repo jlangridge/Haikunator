@@ -2,21 +2,35 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Haikuenator
 {
     /// <summary>
-    /// Represents a basic haiku, with a 5-7-5 syllable pattern
+    /// Represents a basic haiku, with a 5-7-5 syllable pattern by default
     /// </summary>
     public class Haiku
     {
-        
-        public Haiku()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Haiku"/> class
+        /// </summary>
+        /// <param name="lineLengths">The lengths of the lines, in syllables</param>
+        public Haiku(params int[] lineLengths)
         {
-            Lines = new List<Line> {new Line(5), new Line(7), new Line(5)};
+            Lines = lineLengths.Select(lineLength => new Line(lineLength)).ToList();
         }
 
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="Haiku"/> class with 
+        /// the default 5-7-5 pattern
+        /// </summary>
+        public Haiku() : this(5, 7, 5)
+        {
+        }
+
+
+        /// <summary>
+        /// Collection of <see cref="Lines"/> that go to make up the Haiku
+        /// </summary>
         public IEnumerable<Line> Lines { get; private set; }
 
         public override string ToString()
@@ -24,6 +38,11 @@ namespace Haikuenator
             return Lines.Aggregate(string.Empty, (current, line) => current + (line + Environment.NewLine));
         }
 
+        /// <summary>
+        /// Asseses whether the supplied text will fit correctly into the <see cref="Haiku"/>
+        /// </summary>
+        /// <param name="candidateText">The text to test</param>
+        /// <returns>True if the syllables will fit, otherwise false</returns>
         public bool CanRead(string candidateText)
         {
             var reader = new StringReader(candidateText);

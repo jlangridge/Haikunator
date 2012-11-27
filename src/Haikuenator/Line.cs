@@ -50,13 +50,14 @@ namespace Haikuenator
 
             foreach (var token in tokens)
             {
-                var syllableCount = new SyllableAnalyzer(token).GetCount();
+                var sanitizedToken = WordTokenizer.Sanitize(token);
+                var syllableCount = new SyllableAnalyzer(sanitizedToken).GetCount();
                 if (syllableTotal + syllableCount > Syllables)
                 {
                     throw new ArgumentException(errorString, "input");
                 }
                 syllableTotal += syllableCount;
-                Text += separator + token;
+                Text += separator + token.RemoveDigits();
 
                 separator = " ";
 

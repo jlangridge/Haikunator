@@ -79,7 +79,7 @@ namespace Haikuenator
                 token += (char)c;
             }
 
-            return token == null ? null : Sanitize(token);
+            return token;
         }
     }
 }
