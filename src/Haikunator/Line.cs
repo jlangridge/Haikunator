@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace Haikuenator
+namespace Haikunator
 {
     /// <summary>
     ///   Represents a single line in the generated Haiku

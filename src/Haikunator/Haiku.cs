@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Haikuenator
+namespace Haikunator
 {
     /// <summary>
     /// Represents a basic haiku, with a 5-7-5 syllable pattern by default

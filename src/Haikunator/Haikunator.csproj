@@ -8,8 +8,8 @@
     <ProjectGuid>{E6FD4D25-545F-45DF-ACED-54612B74ADAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Haikuenator</RootNamespace>
-    <AssemblyName>Haikuenator</AssemblyName>
+    <RootNamespace>Haikunator</RootNamespace>
+    <AssemblyName>Haikunator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

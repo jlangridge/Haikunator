@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace Haikuenator.Cli
+namespace Haikunator.Cli
 {
     public class LinePattern
     {

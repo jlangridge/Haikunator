@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace Haikuenator
+namespace Haikunator
 {
     /// <summary>
     /// Provides very basic phonological analysis of a given word

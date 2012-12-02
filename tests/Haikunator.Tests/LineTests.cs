@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 
-namespace Haikuenator.Tests
+namespace Haikunator.Tests
 {
     [TestFixture]
     public class LineTests

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Haikuenator.Tests
+namespace Haikunator.Tests
 {
     [TestFixture]
     public class WordTokenizerTests

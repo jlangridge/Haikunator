@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using NUnit.Framework;
 
-namespace Haikuenator.Tests
+namespace Haikunator.Tests
 {
     [TestFixture]
     public class HaikuTests

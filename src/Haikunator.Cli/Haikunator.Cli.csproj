@@ -8,8 +8,8 @@
     <ProjectGuid>{301C40FF-5626-4836-84E7-7E29E448997F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Haikuenator.Cli</RootNamespace>
-    <AssemblyName>Haikuenator.Cli</AssemblyName>
+    <RootNamespace>Haikunator.Cli</RootNamespace>
+    <AssemblyName>Haikunator.Cli</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

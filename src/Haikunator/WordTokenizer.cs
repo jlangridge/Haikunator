@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Haikuenator
+namespace Haikunator
 {
     /// <summary>
     /// Imperfect (good-enough?) implementation of a lexical tokenizer.

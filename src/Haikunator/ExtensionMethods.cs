@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Haikuenator
+namespace Haikunator
 {
     public static class ExtensionMethods
     {

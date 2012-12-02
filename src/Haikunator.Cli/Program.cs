@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Xml.Linq;
 
-namespace Haikuenator.Cli
+namespace Haikunator.Cli
 {
     public class Program
     {
