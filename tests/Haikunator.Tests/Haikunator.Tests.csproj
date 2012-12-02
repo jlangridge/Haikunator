@@ -54,7 +54,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Haikuenator\Haikuenator.csproj">
+    <ProjectReference Include="..\..\src\Haikunator\Haikunator.csproj">
       <Project>{E6FD4D25-545F-45DF-ACED-54612B74ADAA}</Project>
       <Name>Haikuenator</Name>
     </ProjectReference>
